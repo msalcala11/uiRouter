@@ -1,0 +1,59 @@
+<!doctype html>
+<html ng-app="myApp">
+	<head>
+		<script src="/js/angular.js"></script>
+		<script src="/js/underscore.js"></script>
+		<script src="/js/angular-ui-router.js"></script>
+		<script src="/app.js"></script>
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Viewport mobile tag for sensible mobile support -->
+    	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    	<!-- partials start here -->
+    	<script type="text/ng-template" id="home.html">
+    		<h1>Home</h1>
+    	</script>
+
+    	<script type="text/ng-template" id="about.html">
+    		<h1>About</h1>
+    		<p>This is a demo to help me better understand how ui-router works.</p>
+    	</script>
+
+    	<script type="text/ng-template" id="list.item.html">
+    		<div ng-controller="listItemCtrl">
+    			<h3>{{selectedFood.name}}</h3>
+    		</div>
+    	</script>
+
+    	<script type="text/ng-template" id="list.html">
+	    	<div ng-controller="listCtrl">
+	    		<h1>List</h1>
+	    		<p>Welcome to your personalized list</p>
+	    		<div class="col-md-3">
+	    		<ul class="nav nav-pills nav-stacked">
+	    			<li ng-repeat="food in foods" ng-class="activeArray[food.id]"><a ng-click="setActive(food.name)" href="#/list/{{food.name}}">{{food.name}}</a></li>
+	    		</ul>
+	    		</div>
+	    		<div class="col-md-9">
+	    			<div ui-view></div>
+	    		</div>
+	    	</div>
+    	</script>
+
+
+	</head>
+
+
+	<body>
+	<div class="container">
+			<ul class="nav nav-pills" ng-controller="navControl">
+				<li ng-class="homeActive"><a ng-click="changeActive('home')" href="#/home">Home</a></li>
+				<li ng-class="listActive"><a ng-click="changeActive('list')" href="#/list">List</a></li>
+				<li ng-class="aboutActive"><a ng-click="changeActive('about')" href="#/about">About</a></li>
+			</ul>
+
+			<div ui-view class="container"></div>
+	</div>
+
+	</body>
+</html>
