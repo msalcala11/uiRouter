@@ -1,0 +1,29 @@
+{ 
+			"eggs" : {
+				"id": 0,
+				"name": "eggs"
+			},
+
+			"oatmeal" : {
+				"id": 1,
+				"name": "oatmeal"
+			},
+
+			"bread" : {
+				"id": 2,
+				"name" : "bread"
+			},
+
+			"rice milk": {
+				"id": 3,
+				"name": "rice milk"
+			},
+			"chicken": {
+				"id": 32,
+				"name": "chicken"
+			},
+			"beets": {
+				"id": 456,
+				"name": "beets"
+			}
+		}
