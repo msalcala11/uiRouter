@@ -3,16 +3,7 @@ var fs = require('fs');
 
 var app = express();
 
-app.use(express.static(process.env.PWD + '/'));
-
-app.get('/', function(req, res){
-	var buffer = new Buffer(fs.readFileSync("index.html"));
-	var indexStr = buffer.toString("utf-8", 0, buffer.length);
-	res.send(indexStr);
-});
-
-app.get('/foods', function(req, res) {
-	res.json({ 
+var foods = { 
 			"eggs" : {
 				"id": 0,
 				"name": "eggs"
@@ -40,8 +31,33 @@ app.get('/foods', function(req, res) {
 				"id": 456,
 				"name": "beets"
 			}
-		});
-})
+};
+
+app.use(express.static(process.env.PWD + '/'));
+app.use(express.bodyParser());
+
+app.get('/', function(req, res){
+	var buffer = new Buffer(fs.readFileSync("index.html"));
+	var indexStr = buffer.toString("utf-8", 0, buffer.length);
+	res.send(indexStr);
+});
+
+app.get('/list', function(req, res) {
+	res.json(foods);
+});
+
+app.get('/list/:itemID', function(req, res) {
+
+	var food = foods[req.params.itemID];
+
+	res.json(food);
+});
+
+app.post('/list', function(req,res) {
+	foods = req.body;
+	res.send(200);
+	console.log(foods);
+});
 
 var port = process.env.PORT || 8080;
 

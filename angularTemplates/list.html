@@ -1,0 +1,11 @@
+<h1>List</h1>
+<p>Welcome to your personalized list. <a ui-sref="list.new" href>Add a food</a></p>
+<div class="col-md-3">
+	<ul class="nav nav-pills nav-stacked">
+		<!--<li ng-repeat="food in foods" ng-class="activeArray[food.id]"><a ng-click="setActive(food.name)" href="#/list/{{food.name}}">{{food.name}}</a></li>-->
+		<li ng-repeat="food in foods" ng-class="{active: $state.includes('list.show') && ($stateParams.itemID == food.name)}"><a ui-sref="list.show({itemID:food.name})">{{food.name}}</a></li>
+	</ul>
+</div>
+<div class="col-md-9">
+	<div ui-view></div>
+</div>
